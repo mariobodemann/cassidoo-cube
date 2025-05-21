@@ -1,5 +1,5 @@
-~~~ Cassidoo Cube ~~~
-=======================
+Cassidoo Cube
+=============
     
 This is the result of getting inspired by something amazing. Drawing a cube. In the command line.
 Thanks @cassidoo. 
@@ -14,8 +14,8 @@ Thanks
 Previews
 ----------
 
-<img src="./docs/kitty-terminal.png" width="200">
-<img src="./docs/mac-terminal.png" width="200">
+<img src="./docs/kitty-terminal.png" width="200"/>
+<img src="./docs/mac-terminal.png" width="200"/>
 
 Trouble Shooting
 ----------------
