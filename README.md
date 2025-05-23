@@ -16,6 +16,7 @@ Previews
 
 <img src="./docs/kitty-terminal.png" width="200"/>
 <img src="./docs/mac-terminal.png" width="200"/>
+<video src="./docs/demo.mp4" width="200"/>
 
 Trouble Shooting
 ----------------
