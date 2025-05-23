@@ -53,7 +53,10 @@ fun main(args: Array<String>) {
     }
 
     if (!options.isEmpty()) {
-        println("Error: Found optional parameters: $options. Exiting.")
+        println(
+            "Error: Found these optional parameter: ${
+                options.keys.joinToString(", ") { "$it=${options[it]}" }
+            }. Exiting.")
         exitProcess(-123)
     }
 
