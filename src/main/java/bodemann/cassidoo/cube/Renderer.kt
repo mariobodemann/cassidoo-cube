@@ -2,8 +2,6 @@ package bodemann.cassidoo.cube
 
 import kotlin.math.abs
 import kotlin.math.floor
-import kotlin.math.max
-import kotlin.math.min
 
 typealias Color = Vector
 
@@ -151,7 +149,7 @@ class Renderer(
         ) {
             // take the color of the face hit
             // use some ~fog~, darkening it based on distance. buggy if too close ...
-            closestHit.key!!.color * (1f / closestHit.value!!.distance)
+            (closestHit.key!!.color * (1f / closestHit.value!!.distance)).clamp(0f, 1f)
         } else {
             Color.zero
         }
@@ -214,9 +212,9 @@ private fun Color.toAnsi24Bit(): String =
 
 private fun Color.toAnsi8Bit(): Int =
     16 +
-            floor(max(min(r, 1.0f), 0.0f) * 6).toInt() * 6 * 6 +
-            floor(max(min(g, 1.0f), 0.0f) * 6).toInt() * 6 +
-            floor(max(min(b, 1.0f), 0.0f) * 6).toInt()
+            floor(r.clamp(0f, 1f) * 6).toInt() * 6 * 6 +
+            floor(g.clamp(0f, 1f) * 6).toInt() * 6 +
+            floor(b.clamp(0f, 1f) * 6).toInt()
 
 private fun Rectangle.intersects(ray: Ray): Hit? {
     val projection = ray.direction dot normal

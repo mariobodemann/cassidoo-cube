@@ -1,5 +1,7 @@
 package bodemann.cassidoo.cube
 
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 data class Vector(
@@ -51,3 +53,12 @@ operator fun Vector.times(scalar: Float): Vector = Vector(x * scalar, y * scalar
 operator fun Float.times(vector: Vector): Vector = vector * this
 
 operator fun Vector.plus(other: Vector): Vector = Vector(x + other.x, y + other.y, z + other.z)
+
+fun Vector.clamp(minimum: Float, maximum: Float): Vector = Vector(
+    x.clamp(minimum, maximum),
+    y.clamp(minimum, maximum),
+    z.clamp(minimum, maximum),
+)
+
+fun Float.clamp(minimum: Float, maximum: Float): Float =
+    min(max(this, minimum), maximum)
