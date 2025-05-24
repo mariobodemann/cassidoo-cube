@@ -123,7 +123,7 @@ class Renderer(
         val cameraPos = configuration.camera.position
         val targetDir = Vector(
             x = x / width.toFloat() - 0.5f,
-            y = y / height.toFloat() - 0.5f,
+            y = (1.0f - y / height.toFloat()) - 0.5f,
             z = 1.0f
         )
 
