@@ -82,9 +82,6 @@ class Renderer(
 
         do {
             val image = renderImage(transformation)
-            if (configuration.animate) {
-                println(ansiClearScreen())
-            }
             consoleOutput(image)
 
             if (configuration.animate) {
