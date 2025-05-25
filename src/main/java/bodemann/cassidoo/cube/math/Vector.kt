@@ -1,4 +1,4 @@
-package bodemann.cassidoo.cube
+package bodemann.cassidoo.cube.math
 
 import kotlin.math.max
 import kotlin.math.min
@@ -50,9 +50,13 @@ infix fun Vector.cross(other: Vector): Vector = Vector(
 
 operator fun Vector.times(scalar: Float): Vector = Vector(x * scalar, y * scalar, z * scalar)
 
+operator fun Vector.div(scalar: Float): Vector = Vector(x / scalar, y / scalar, z / scalar)
+
 operator fun Float.times(vector: Vector): Vector = vector * this
 
 operator fun Vector.plus(other: Vector): Vector = Vector(x + other.x, y + other.y, z + other.z)
+
+fun Vector.normalize(): Vector = this / length
 
 fun Vector.clamp(minimum: Float, maximum: Float): Vector = Vector(
     x.clamp(minimum, maximum),

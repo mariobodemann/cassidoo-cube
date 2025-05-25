@@ -2,6 +2,8 @@
 
 package bodemann.cassidoo.cube
 
+import bodemann.cassidoo.cube.math.Matrix
+import bodemann.cassidoo.cube.math.Vector
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
@@ -32,6 +34,7 @@ fun main(args: Array<String>) {
         width = options.remove("width")?.toInt() ?: 32,
         height = options.remove("height")?.toInt() ?: 32,
         transformation = options.remove("transform")?.toTargetTransformation(options) ?: Matrix.rotate(0f, 45f, 0f),
+        target = options.remove("target")?.toTargetModel() ?: TargetModel.Cube,
         camera = options.remove("camera")?.toCamera() ?: Camera(Vector(0, 0, -2)),
         colorModel = options.remove("colormodel")?.toColorModel() ?: ColorModel.TRUE_COLOR,
         frameDelay = options.remove("framedelay")?.toInt() ?: 32,
@@ -102,6 +105,12 @@ private fun String.toVector(): Vector {
     }.toFloatArray().toTypedArray()
 
     return Vector(components)
+}
+
+private fun String.toTargetModel(): TargetModel = when (this) {
+    "cube" -> TargetModel.Cube
+    "tetrahedron" -> TargetModel.Tetrahedron
+    else -> TargetModel.Cube.also { println("ERROR $this not a valid target model. Defaulting to $it.") }
 }
 
 private fun printHelp() = println(

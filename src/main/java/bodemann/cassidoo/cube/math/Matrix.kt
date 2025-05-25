@@ -1,4 +1,4 @@
-package bodemann.cassidoo.cube
+package bodemann.cassidoo.cube.math
 
 import kotlin.math.cos
 import kotlin.math.sin
@@ -16,6 +16,14 @@ data class Matrix(
                 1f, 0f, 0f,
                 0f, 1f, 0f,
                 0f, 0f, 1f,
+            )
+        )
+
+        fun scale(s: Vector): Matrix = Matrix(
+            arrayOf(
+                s.x, 0f, 0f,
+                0f, s.y, 0f,
+                0f, 0f, s.z,
             )
         )
 
@@ -76,8 +84,9 @@ fun Matrix.column(n: Int) = Vector(
     coefficients[n + 6],
 )
 
-operator fun Matrix.times(vector: Vector): Vector = Vector(
-    column(0) dot vector,
-    column(1) dot vector,
-    column(2) dot vector,
-)
+operator fun Matrix.times(vector: Vector): Vector =
+    Vector(
+        column(0) dot vector,
+        column(1) dot vector,
+        column(2) dot vector,
+    )
