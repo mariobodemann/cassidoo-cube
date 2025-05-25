@@ -110,6 +110,7 @@ private fun String.toVector(): Vector {
 private fun String.toTargetModel(): TargetModel = when (this) {
     "cube" -> TargetModel.Cube
     "tetrahedron" -> TargetModel.Tetrahedron
+    "sphere" -> TargetModel.Sphere
     else -> TargetModel.Cube.also { println("ERROR $this not a valid target model. Defaulting to $it.") }
 }
 

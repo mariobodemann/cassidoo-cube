@@ -33,17 +33,28 @@ sealed class Face(
             val d = ((point - ray.point) dot normal) / projection
 
             return if (d > DELTA) {
-                val x = ray.point + d * ray.direction
-                val px = x - point
+                val intersectionPoint = ray.point + d * ray.direction
+                val p = intersectionPoint - point
 
-                val u = a dot px
-                val v = b dot px
+                val dot_aa = a dot a
+                val dot_ab = a dot b
+                val dot_bb = b dot b
+                val dot_ap = a dot p
+                val dot_bp = b dot p
+                val denominator = dot_aa * dot_bb - dot_ab * dot_ab
+
+                if (abs(denominator) < DELTA) {
+                    return null // Parallel or degenerate triangle
+                }
+
+                val u = (dot_bb * dot_ap - dot_ab * dot_bp) / denominator
+                val v = (dot_aa * dot_bp - dot_ab * dot_ap) / denominator
 
                 if (
                     u in -DELTA..1.0f + DELTA &&
                     v in -DELTA..1.0f + DELTA
                 ) {
-                    Hit(distance = d, point = x)
+                    Hit(distance = d, point = p)
                 } else {
                     null
                 }

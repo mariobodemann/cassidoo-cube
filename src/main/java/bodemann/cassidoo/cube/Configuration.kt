@@ -3,6 +3,7 @@ package bodemann.cassidoo.cube
 import bodemann.cassidoo.cube.math.Matrix
 import bodemann.cassidoo.cube.math.Vector
 import bodemann.cassidoo.cube.models.Face
+import bodemann.cassidoo.cube.models.createPolarSphere
 import bodemann.cassidoo.cube.models.cubeFaces
 import bodemann.cassidoo.cube.models.tetrahedronFaces
 
@@ -22,6 +23,7 @@ sealed class TargetModel(
 ) {
     object Cube : TargetModel(faces = cubeFaces())
     object Tetrahedron : TargetModel(faces = tetrahedronFaces())
+    object Sphere : TargetModel(faces = createPolarSphere(0.5f, 8,8))
 }
 
 enum class ColorModel {

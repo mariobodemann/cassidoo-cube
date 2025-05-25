@@ -22,7 +22,7 @@ data class Vector(
     )
 
     companion object {
-        const val DELTA: Float = 0.00001f
+        const val DELTA: Float = 0.000001f
 
         val zero = Vector(0, 0, 0)
     }
